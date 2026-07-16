@@ -8,9 +8,6 @@ const nextConfig = {
       { protocol: "https", hostname: "images.unsplash.com" },
     ],
   },
-  experimental: {
-    typedRoutes: true,
-  },
 };
 
 const pwaConfig = withPWA({
