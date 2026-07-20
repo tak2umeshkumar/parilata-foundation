@@ -274,3 +274,20 @@ create index idx_blogs_category on public.blogs(category_id);
 create index idx_stories_status on public.stories(status);
 create index idx_comments_blog on public.comments(blog_id);
 create index idx_comments_story on public.comments(story_id);
+
+-- ============================================================
+-- AUTO-CREATE A PROFILE ROW WHEN A NEW USER SIGNS UP
+-- (needed so the admin login/middleware role-check has something to read)
+-- ============================================================
+create or replace function public.handle_new_user()
+returns trigger as $$
+begin
+  insert into public.profiles (id, full_name, role)
+  values (new.id, new.raw_user_meta_data->>'full_name', 'reader');
+  return new;
+end;
+$$ language plpgsql security definer;
+
+create trigger on_auth_user_created
+  after insert on auth.users
+  for each row execute function public.handle_new_user();
