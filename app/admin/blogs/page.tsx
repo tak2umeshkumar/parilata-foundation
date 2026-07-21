@@ -19,8 +19,8 @@ export default async function AdminBlogsPage() {
         </Link>
       </div>
 
-      <div className="overflow-hidden rounded-xl border border-canopy-100 dark:border-canopy-700">
-        <table className="w-full text-sm">
+      <div className="overflow-x-auto rounded-xl border border-canopy-100 dark:border-canopy-700">
+        <table className="w-full min-w-[560px] text-sm">
           <thead className="bg-canopy-50 text-left text-canopy-700/70 dark:bg-canopy-800 dark:text-canopy-100/70">
             <tr>
               <th className="px-4 py-3 font-medium">Title</th>

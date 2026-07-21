@@ -1,6 +1,7 @@
 import Link from "next/link";
-import { LayoutDashboard, FileText, Image as ImageIcon, Video, Users, Mail, LogOut, Leaf } from "lucide-react";
+import { LayoutDashboard, FileText, Image as ImageIcon, Video, Users, Mail, Leaf } from "lucide-react";
 import { LogoutButton } from "@/components/admin/logout-button";
+import { MobileAdminNav } from "@/components/admin/mobile-admin-nav";
 
 export default function AdminLayout({ children }: { children: React.ReactNode }) {
   const links = [
@@ -13,7 +14,8 @@ export default function AdminLayout({ children }: { children: React.ReactNode })
   ];
 
   return (
-    <div className="flex min-h-screen bg-paper dark:bg-canopy-900">
+    <div className="flex min-h-screen flex-col bg-paper dark:bg-canopy-900 md:flex-row">
+      <MobileAdminNav />
       <aside className="hidden w-64 flex-col border-r border-canopy-100 bg-canopy-900 p-6 text-paper md:flex">
         <div className="mb-8 flex items-center gap-2">
           <span className="grid h-8 w-8 place-items-center rounded-full bg-moss-500 text-canopy-900">
@@ -34,7 +36,7 @@ export default function AdminLayout({ children }: { children: React.ReactNode })
         </nav>
         <LogoutButton />
       </aside>
-      <main className="flex-1 p-6 md:p-10">{children}</main>
+      <main className="flex-1 overflow-x-hidden p-4 sm:p-6 md:p-10">{children}</main>
     </div>
   );
 }

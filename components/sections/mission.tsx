@@ -57,11 +57,11 @@ export function Mission() {
               className="object-cover"
             />
           </div>
-          <div className="absolute -bottom-6 -left-6 rounded-2xl bg-paper p-5 shadow-xl dark:bg-canopy-800">
-            <p className="font-display text-lg italic text-canopy-900 dark:text-paper">
+          <div className="absolute -bottom-4 -left-3 max-w-[78%] rounded-2xl bg-paper p-4 shadow-xl dark:bg-canopy-800 sm:-bottom-6 sm:-left-6 sm:max-w-xs sm:p-5">
+            <p className="font-display text-base italic text-canopy-900 dark:text-paper sm:text-lg">
               "The forest doesn't need our pity. It needs our hands."
             </p>
-            <p className="mt-2 text-sm font-semibold text-moss-700">— Kajal Kaser, Founder</p>
+            <p className="mt-2 text-xs font-semibold text-moss-700 sm:text-sm">— Kajal Kaser, Founder</p>
           </div>
         </motion.div>
       </div>

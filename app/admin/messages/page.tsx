@@ -10,7 +10,7 @@ export default async function AdminMessagesPage() {
       <div className="space-y-4">
         {(messages ?? []).map((m) => (
           <div key={m.id} className="rounded-xl border border-canopy-100 p-5 dark:border-canopy-700">
-            <div className="flex items-center justify-between">
+            <div className="flex flex-col gap-1 sm:flex-row sm:items-center sm:justify-between">
               <p className="font-semibold text-canopy-900 dark:text-paper">{m.name} <span className="font-normal text-canopy-700/60">· {m.email}</span></p>
               <span className="text-xs text-canopy-700/60 dark:text-canopy-100/60">{new Date(m.created_at).toLocaleDateString()}</span>
             </div>

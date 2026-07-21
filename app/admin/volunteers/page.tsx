@@ -10,7 +10,7 @@ export default async function AdminVolunteersPage() {
       <div className="space-y-4">
         {(apps ?? []).map((a) => (
           <div key={a.id} className="rounded-xl border border-canopy-100 p-5 dark:border-canopy-700">
-            <div className="flex items-center justify-between">
+            <div className="flex flex-col gap-1 sm:flex-row sm:items-center sm:justify-between">
               <p className="font-semibold text-canopy-900 dark:text-paper">{a.full_name}</p>
               <span className="text-xs text-canopy-700/60 dark:text-canopy-100/60">{new Date(a.created_at).toLocaleDateString()}</span>
             </div>

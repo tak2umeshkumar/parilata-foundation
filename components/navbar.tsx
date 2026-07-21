@@ -22,12 +22,13 @@ export function Navbar() {
 
   return (
     <header className="sticky top-0 z-50 border-b border-canopy-100/60 bg-paper/85 backdrop-blur supports-[backdrop-filter]:bg-paper/70 dark:bg-canopy-900/85">
-      <div className="container-wide flex h-20 items-center justify-between">
-        <Link href="/" className="flex items-center gap-2 group">
-          <span className="grid h-9 w-9 place-items-center rounded-full bg-canopy-700 text-paper transition group-hover:bg-moss-700">
-            <Leaf size={18} strokeWidth={2.5} />
+      <div className="container-wide flex h-16 items-center justify-between md:h-20">
+        <Link href="/" className="flex items-center gap-1.5 group sm:gap-2">
+          <span className="grid h-8 w-8 shrink-0 place-items-center rounded-full bg-canopy-700 text-paper transition group-hover:bg-moss-700 sm:h-9 sm:w-9">
+            <Leaf size={16} strokeWidth={2.5} className="sm:hidden" />
+            <Leaf size={18} strokeWidth={2.5} className="hidden sm:block" />
           </span>
-          <span className="font-display text-lg font-semibold tracking-tight text-canopy-900 dark:text-paper">
+          <span className="font-display text-base font-semibold tracking-tight text-canopy-900 dark:text-paper sm:text-lg">
             Parilata Foundation
           </span>
         </Link>
