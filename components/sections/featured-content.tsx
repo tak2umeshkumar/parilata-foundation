@@ -15,9 +15,9 @@ export type ContentItem = {
 };
 
 const blogs: ContentItem[] = [
-  { slug: "reviving-kalindi-lake", title: "How a Dead Lake Came Back to Life", excerpt: "Six months, 40 volunteers, and one stubborn belief that Kalindi Lake could breathe again.", image: "https://images.unsplash.com/photo-1500534623283-312aade485b7?w=800&q=80", category: "Water", date: "Jun 2026" },
-  { slug: "school-plastic-pledge", title: "The School That Banned Single-Use Plastic", excerpt: "Students led the change before the district caught up. Here's how they did it.", image: "https://images.unsplash.com/photo-1497436072909-60f360e1d4b1?w=800&q=80", category: "Waste", date: "May 2026" },
-  { slug: "monsoon-plantation-drive", title: "Planting 3,000 Saplings Before the Monsoon", excerpt: "A race against the first rains, and the community that showed up anyway.", image: "https://images.unsplash.com/photo-1416879595882-3373a0480b5b?w=800&q=80", category: "Reforestation", date: "Apr 2026" },
+  { slug: "reviving-kalindi-lake", title: "How a Dead Lake Came Back to Life", excerpt: "Six months, 40 volunteers, and one stubborn belief that Kalindi Lake could breathe again.", image: "https://images.unsplash.com/photo-1758599669317-efd787d954ef?w=800&q=80", category: "Water", date: "Jun 2026" },
+  { slug: "school-plastic-pledge", title: "The School That Banned Single-Use Plastic", excerpt: "Students led the change before the district caught up. Here's how they did it.", image: "https://images.unsplash.com/photo-1758599669327-83d310882929?w=800&q=80", category: "Waste", date: "May 2026" },
+  { slug: "monsoon-plantation-drive", title: "Planting 3,000 Saplings Before the Monsoon", excerpt: "A race against the first rains, and the community that showed up anyway.", image: "https://images.unsplash.com/photo-1780840883415-6babdeaf9d70?w=800&q=80", category: "Reforestation", date: "Apr 2026" },
 ];
 
 function ContentCard({ item, href }: { item: ContentItem; href: string }) {

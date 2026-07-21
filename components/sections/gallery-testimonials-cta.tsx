@@ -7,9 +7,9 @@ import { Quote, HandHeart, HeartHandshake } from "lucide-react";
 
 const galleryPreview = [
   "https://images.unsplash.com/photo-1440342359743-84fcb8c21f21?w=600&q=80",
-  "https://images.unsplash.com/photo-1466692476868-9ee5a3a3e93b?w=600&q=80",
-  "https://images.unsplash.com/photo-1518709268805-4e9042af2176?w=600&q=80",
-  "https://images.unsplash.com/photo-1470071459604-3b5ec3a7fe8f?w=600&q=80",
+  "https://images.unsplash.com/photo-1758599669327-83d310882929?w=600&q=80",
+  "https://images.unsplash.com/photo-1758599669317-efd787d954ef?w=600&q=80",
+  "https://images.unsplash.com/photo-1780840883415-6babdeaf9d70?w=600&q=80",
   "https://images.unsplash.com/photo-1441974231531-c6227db76b6e?w=600&q=80",
   "https://images.unsplash.com/photo-1447752875215-b2761acb3c5d?w=600&q=80",
 ];

@@ -41,7 +41,7 @@ export default function AboutPage() {
 
       <div className="mt-16 grid gap-12 md:grid-cols-2 md:items-center">
         <div className="relative aspect-[4/5] overflow-hidden rounded-organic bg-canopy-100">
-          <Image src="https://images.unsplash.com/photo-1509099836639-18ba1795216d?w=900&q=80" alt="Kajal Kaser, founder" fill className="object-cover" />
+          <Image src="https://images.unsplash.com/photo-1758599669327-83d310882929?w=900&q=80" alt="Kajal Kaser, founder" fill className="object-cover" />
         </div>
         <div>
           <h2 className="font-display text-2xl font-semibold text-canopy-900 dark:text-paper">Kajal Kaser, Founder</h2>

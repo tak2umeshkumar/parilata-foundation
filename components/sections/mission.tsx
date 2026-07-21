@@ -51,7 +51,7 @@ export function Mission() {
         >
           <div className="relative aspect-[4/5] w-full overflow-hidden rounded-organic bg-canopy-100">
             <Image
-              src="https://images.unsplash.com/photo-1509099836639-18ba1795216d?w=900&q=80"
+              src="https://images.unsplash.com/photo-1758599669327-83d310882929?w=900&q=80"
               alt="Kajal Kaser, founder of Parilata Foundation, working in the field"
               fill
               className="object-cover"
