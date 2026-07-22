@@ -7,7 +7,7 @@ import { UploadCloud, Loader2, Save } from "lucide-react";
 import {
   HERO_DEFAULTS, MISSION_DEFAULTS, ABOUT_DEFAULTS,
   type HeroContent, type MissionContent, type AboutContent,
-} from "@/lib/site-content";
+} from "@/lib/site-content-types";
 
 function Field({ label, value, onChange, textarea = false, rows = 3 }: {
   label: string; value: string; onChange: (v: string) => void; textarea?: boolean; rows?: number;

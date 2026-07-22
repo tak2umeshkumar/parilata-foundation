@@ -3,7 +3,7 @@
 import Link from "next/link";
 import { motion } from "framer-motion";
 import { ArrowRight, PlayCircle } from "lucide-react";
-import type { HeroContent } from "@/lib/site-content";
+import type { HeroContent } from "@/lib/site-content-types";
 
 /**
  * Signature element: concentric "growth rings" — like a cross-section of a tree trunk,

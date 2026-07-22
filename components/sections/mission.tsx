@@ -4,7 +4,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { motion } from "framer-motion";
 import { Droplets, TreePine, Recycle } from "lucide-react";
-import type { MissionContent } from "@/lib/site-content";
+import type { MissionContent } from "@/lib/site-content-types";
 
 const icons = [TreePine, Droplets, Recycle];
 
