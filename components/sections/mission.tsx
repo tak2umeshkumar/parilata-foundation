@@ -4,14 +4,17 @@ import Image from "next/image";
 import Link from "next/link";
 import { motion } from "framer-motion";
 import { Droplets, TreePine, Recycle } from "lucide-react";
+import type { MissionContent } from "@/lib/site-content";
 
-const pillars = [
-  { icon: TreePine, title: "Reforestation", copy: "Native-species tree planting with the communities who'll tend them." },
-  { icon: Droplets, title: "Water Revival", copy: "Cleaning and reviving lakes, ponds, and rivers choked by waste." },
-  { icon: Recycle, title: "Waste & Awareness", copy: "School programs and neighborhood drives that turn habits around." },
-];
+const icons = [TreePine, Droplets, Recycle];
 
-export function Mission() {
+export function Mission({ content }: { content: MissionContent }) {
+  const pillars = [
+    { icon: icons[0], title: content.pillar1_title, copy: content.pillar1_copy },
+    { icon: icons[1], title: content.pillar2_title, copy: content.pillar2_copy },
+    { icon: icons[2], title: content.pillar3_title, copy: content.pillar3_copy },
+  ];
+
   return (
     <section className="container-wide py-20 md:py-28">
       <div className="grid gap-16 md:grid-cols-2 md:items-center">
@@ -21,15 +24,12 @@ export function Mission() {
           viewport={{ once: true, margin: "-80px" }}
           transition={{ duration: 0.6 }}
         >
-          <span className="text-sm font-semibold uppercase tracking-wide text-moss-700">Our Mission</span>
+          <span className="text-sm font-semibold uppercase tracking-wide text-moss-700">{content.eyebrow}</span>
           <h2 className="mt-3 font-display text-3xl font-semibold text-canopy-900 dark:text-paper md:text-4xl">
-            We believe change is told story by story, not slogan by slogan.
+            {content.heading}
           </h2>
           <p className="mt-5 text-canopy-700/90 dark:text-canopy-100/80">
-            Parilata Foundation works at the intersection of journalism and
-            grassroots action — documenting environmental damage honestly,
-            and standing alongside the people repairing it. Every campaign we
-            run starts with a story from the field.
+            {content.body}
           </p>
           <div className="mt-8 grid gap-6 sm:grid-cols-3">
             {pillars.map((p) => (
@@ -51,7 +51,7 @@ export function Mission() {
         >
           <div className="relative aspect-[4/5] w-full overflow-hidden rounded-organic bg-canopy-100">
             <Image
-              src="https://images.unsplash.com/photo-1758599669327-83d310882929?w=900&q=80"
+              src={content.image_url}
               alt="Kajal Kaser, founder of Parilata Foundation, working in the field"
               fill
               className="object-cover"
@@ -59,9 +59,9 @@ export function Mission() {
           </div>
           <div className="absolute -bottom-4 -left-3 max-w-[78%] rounded-2xl bg-paper p-4 shadow-xl dark:bg-canopy-800 sm:-bottom-6 sm:-left-6 sm:max-w-xs sm:p-5">
             <p className="font-display text-base italic text-canopy-900 dark:text-paper sm:text-lg">
-              "The forest doesn't need our pity. It needs our hands."
+              "{content.quote}"
             </p>
-            <p className="mt-2 text-xs font-semibold text-moss-700 sm:text-sm">— Kajal Kaser, Founder</p>
+            <p className="mt-2 text-xs font-semibold text-moss-700 sm:text-sm">{content.quote_author}</p>
           </div>
         </motion.div>
       </div>

@@ -1,4 +1,5 @@
 import Image from "next/image";
+import { getSiteContent, ABOUT_DEFAULTS } from "@/lib/site-content";
 
 export const metadata = { title: "About" };
 
@@ -9,18 +10,16 @@ const timeline = [
   { year: "2026", event: "120+ published stories and 6,500+ trees restored across partner communities." },
 ];
 
-export default function AboutPage() {
+export default async function AboutPage() {
+  const content = await getSiteContent("about_page", ABOUT_DEFAULTS);
+
   return (
     <div className="container-wide py-16 md:py-24">
       <div className="max-w-2xl">
         <span className="text-sm font-semibold uppercase tracking-wide text-moss-700">About Us</span>
-        <h1 className="mt-2 font-display text-4xl font-semibold text-canopy-900 dark:text-paper">Our Story</h1>
+        <h1 className="mt-2 font-display text-4xl font-semibold text-canopy-900 dark:text-paper">{content.intro_heading}</h1>
         <p className="mt-5 text-canopy-700/90 dark:text-canopy-100/80">
-          Parilata Foundation began with a single question: what happens if you
-          document environmental damage honestly, and then stay to help fix it?
-          Founded by activist Kajal Kaser, we work directly with communities
-          on reforestation, water revival, and waste reduction — and tell the
-          story of that work as it happens, not after the fact.
+          {content.intro_body}
         </p>
       </div>
 
@@ -28,27 +27,25 @@ export default function AboutPage() {
         <div className="rounded-2xl border border-canopy-100 p-8 dark:border-canopy-700">
           <h2 className="font-display text-xl font-semibold text-canopy-900 dark:text-paper">Vision</h2>
           <p className="mt-3 text-canopy-700/80 dark:text-canopy-100/70">
-            A future where every community has the tools and the story to protect the land around it.
+            {content.vision}
           </p>
         </div>
         <div className="rounded-2xl border border-canopy-100 p-8 dark:border-canopy-700">
           <h2 className="font-display text-xl font-semibold text-canopy-900 dark:text-paper">Mission</h2>
           <p className="mt-3 text-canopy-700/80 dark:text-canopy-100/70">
-            To document environmental change honestly, and stand alongside the people repairing it.
+            {content.mission}
           </p>
         </div>
       </div>
 
       <div className="mt-16 grid gap-12 md:grid-cols-2 md:items-center">
         <div className="relative aspect-[4/5] overflow-hidden rounded-organic bg-canopy-100">
-          <Image src="https://images.unsplash.com/photo-1758599669327-83d310882929?w=900&q=80" alt="Kajal Kaser, founder" fill className="object-cover" />
+          <Image src={content.founder_image_url} alt={content.founder_name} fill className="object-cover" />
         </div>
         <div>
-          <h2 className="font-display text-2xl font-semibold text-canopy-900 dark:text-paper">Kajal Kaser, Founder</h2>
+          <h2 className="font-display text-2xl font-semibold text-canopy-900 dark:text-paper">{content.founder_name}</h2>
           <p className="mt-3 text-canopy-700/80 dark:text-canopy-100/70">
-            Kajal has spent the last several years working directly with communities
-            on reforestation and water revival projects, combining hands-on fieldwork
-            with storytelling to build lasting local support for environmental action.
+            {content.founder_body}
           </p>
         </div>
       </div>

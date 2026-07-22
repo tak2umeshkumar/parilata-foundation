@@ -291,3 +291,22 @@ $$ language plpgsql security definer;
 create trigger on_auth_user_created
   after insert on auth.users
   for each row execute function public.handle_new_user();
+
+-- ============================================================
+-- SITE CONTENT (editable text/images for Home + About pages)
+-- ============================================================
+create table public.site_content (
+  id text primary key,
+  content jsonb not null default '{}'::jsonb,
+  updated_at timestamptz not null default now()
+);
+
+alter table public.site_content enable row level security;
+
+create policy "Public read site content" on public.site_content
+  for select using (true);
+
+create policy "Admins manage site content" on public.site_content
+  for all using (
+    exists (select 1 from public.profiles p where p.id = auth.uid() and p.role in ('admin','editor'))
+  );

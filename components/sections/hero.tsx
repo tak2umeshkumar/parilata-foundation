@@ -3,6 +3,7 @@
 import Link from "next/link";
 import { motion } from "framer-motion";
 import { ArrowRight, PlayCircle } from "lucide-react";
+import type { HeroContent } from "@/lib/site-content";
 
 /**
  * Signature element: concentric "growth rings" — like a cross-section of a tree trunk,
@@ -34,7 +35,7 @@ function GrowthRings() {
   );
 }
 
-export function Hero() {
+export function Hero({ content }: { content: HeroContent }) {
   return (
     <section className="grain-texture relative overflow-hidden bg-canopy-50 dark:bg-canopy-900">
       <div className="container-wide relative z-10 grid gap-12 py-20 md:grid-cols-2 md:py-28">
@@ -45,17 +46,15 @@ export function Hero() {
           className="flex flex-col justify-center"
         >
           <span className="mb-5 inline-flex w-fit items-center gap-2 rounded-full bg-moss-100 px-4 py-1.5 text-xs font-semibold uppercase tracking-wide text-moss-700">
-            Every ring is a year of work
+            {content.badge}
           </span>
           <h1 className="text-balance font-display text-4xl font-semibold leading-[1.08] text-canopy-900 dark:text-paper md:text-6xl">
-            Stories from the ground,
-            <span className="italic text-moss-700"> campaigns </span>
-            for the future.
+            {content.heading_pre}
+            <span className="italic text-moss-700"> {content.heading_italic} </span>
+            {content.heading_post}
           </h1>
           <p className="mt-6 max-w-lg text-lg text-canopy-700/90 dark:text-canopy-100/80">
-            Parilata Foundation documents environmental change as it happens —
-            through the people restoring rivers, replanting forests, and
-            rebuilding their neighborhoods, led by activist Kajal Kaser.
+            {content.description}
           </p>
           <div className="mt-9 flex flex-wrap items-center gap-4">
             <Link
@@ -75,16 +74,16 @@ export function Hero() {
 
           <dl className="mt-12 flex flex-wrap gap-x-10 gap-y-4 border-t border-canopy-100 pt-8 dark:border-canopy-700">
             <div>
-              <dt className="font-display text-3xl font-semibold text-canopy-900 dark:text-paper">120+</dt>
-              <dd className="text-sm text-canopy-700/70 dark:text-canopy-100/70">stories published</dd>
+              <dt className="font-display text-3xl font-semibold text-canopy-900 dark:text-paper">{content.stat1_value}</dt>
+              <dd className="text-sm text-canopy-700/70 dark:text-canopy-100/70">{content.stat1_label}</dd>
             </div>
             <div>
-              <dt className="font-display text-3xl font-semibold text-canopy-900 dark:text-paper">34</dt>
-              <dd className="text-sm text-canopy-700/70 dark:text-canopy-100/70">community campaigns</dd>
+              <dt className="font-display text-3xl font-semibold text-canopy-900 dark:text-paper">{content.stat2_value}</dt>
+              <dd className="text-sm text-canopy-700/70 dark:text-canopy-100/70">{content.stat2_label}</dd>
             </div>
             <div>
-              <dt className="font-display text-3xl font-semibold text-canopy-900 dark:text-paper">6,500+</dt>
-              <dd className="text-sm text-canopy-700/70 dark:text-canopy-100/70">trees restored</dd>
+              <dt className="font-display text-3xl font-semibold text-canopy-900 dark:text-paper">{content.stat3_value}</dt>
+              <dd className="text-sm text-canopy-700/70 dark:text-canopy-100/70">{content.stat3_label}</dd>
             </div>
           </dl>
         </motion.div>

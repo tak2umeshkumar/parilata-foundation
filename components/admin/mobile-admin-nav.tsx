@@ -3,11 +3,12 @@
 import { useState } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { Menu, X, LayoutDashboard, FileText, Image as ImageIcon, Video, Users, Mail, Leaf } from "lucide-react";
+import { Menu, X, LayoutDashboard, FileText, Image as ImageIcon, Video, Users, Mail, Leaf, PenSquare } from "lucide-react";
 import { LogoutButton } from "@/components/admin/logout-button";
 
 const links = [
   { href: "/admin", label: "Dashboard", icon: LayoutDashboard },
+  { href: "/admin/content", label: "Site Content", icon: PenSquare },
   { href: "/admin/blogs", label: "Blogs", icon: FileText },
   { href: "/admin/gallery", label: "Gallery", icon: ImageIcon },
   { href: "/admin/videos", label: "Videos", icon: Video },
