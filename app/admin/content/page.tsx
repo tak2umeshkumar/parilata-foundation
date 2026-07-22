@@ -5,8 +5,8 @@ import { createClient } from "@/lib/supabase/client";
 import { toast } from "sonner";
 import { UploadCloud, Loader2, Save } from "lucide-react";
 import {
-  HERO_DEFAULTS, MISSION_DEFAULTS, ABOUT_DEFAULTS,
-  type HeroContent, type MissionContent, type AboutContent,
+  HERO_DEFAULTS, MISSION_DEFAULTS, ABOUT_DEFAULTS, CONTACT_DEFAULTS, DONATE_DEFAULTS,
+  type HeroContent, type MissionContent, type AboutContent, type ContactInfo, type DonateInfo,
 } from "@/lib/site-content-types";
 
 function Field({ label, value, onChange, textarea = false, rows = 3 }: {
@@ -79,17 +79,21 @@ export default function AdminContentPage() {
   const [hero, setHero] = useState<HeroContent>(HERO_DEFAULTS);
   const [mission, setMission] = useState<MissionContent>(MISSION_DEFAULTS);
   const [about, setAbout] = useState<AboutContent>(ABOUT_DEFAULTS);
+  const [contact, setContact] = useState<ContactInfo>(CONTACT_DEFAULTS);
+  const [donate, setDonate] = useState<DonateInfo>(DONATE_DEFAULTS);
   const [loading, setLoading] = useState(true);
   const [saving, setSaving] = useState<string | null>(null);
 
   useEffect(() => {
     async function load() {
       const supabase = createClient();
-      const { data } = await supabase.from("site_content").select("id, content").in("id", ["home_hero", "home_mission", "about_page"]);
+      const { data } = await supabase.from("site_content").select("id, content").in("id", ["home_hero", "home_mission", "about_page", "contact_info", "donate_info"]);
       const map = Object.fromEntries((data ?? []).map((r) => [r.id, r.content]));
       if (map.home_hero) setHero({ ...HERO_DEFAULTS, ...map.home_hero });
       if (map.home_mission) setMission({ ...MISSION_DEFAULTS, ...map.home_mission });
       if (map.about_page) setAbout({ ...ABOUT_DEFAULTS, ...map.about_page });
+      if (map.contact_info) setContact({ ...CONTACT_DEFAULTS, ...map.contact_info });
+      if (map.donate_info) setDonate({ ...DONATE_DEFAULTS, ...map.donate_info });
       setLoading(false);
     }
     load();
@@ -183,6 +187,31 @@ export default function AdminContentPage() {
         <button onClick={() => handleSave("about_page", about)} disabled={saving === "about_page"}
           className="inline-flex items-center gap-2 rounded-full bg-canopy-700 px-6 py-2.5 text-sm font-semibold text-paper hover:bg-moss-700 disabled:opacity-60">
           <Save size={15} /> {saving === "about_page" ? "Saving..." : "Save About Page"}
+        </button>
+      </section>
+
+      {/* CONTACT PAGE */}
+      <section className="space-y-4 border-t border-canopy-100 pt-8 dark:border-canopy-700">
+        <h2 className="font-display text-lg font-semibold text-canopy-900 dark:text-paper">Contact Page &amp; Footer Email</h2>
+        <p className="text-xs text-canopy-700/60 dark:text-canopy-100/60">
+          This email is shown on the Contact page and in the site footer. The WhatsApp number is set separately, in Vercel's environment variables (NEXT_PUBLIC_WHATSAPP_NUMBER), since changing it requires a redeploy either way.
+        </p>
+        <Field label="Contact email address" value={contact.email} onChange={upd(setContact, "email")} />
+        <Field label="Location shown on Contact page" value={contact.location} onChange={upd(setContact, "location")} />
+        <button onClick={() => handleSave("contact_info", contact)} disabled={saving === "contact_info"}
+          className="inline-flex items-center gap-2 rounded-full bg-canopy-700 px-6 py-2.5 text-sm font-semibold text-paper hover:bg-moss-700 disabled:opacity-60">
+          <Save size={15} /> {saving === "contact_info" ? "Saving..." : "Save Contact Info"}
+        </button>
+      </section>
+
+      {/* DONATE PAGE */}
+      <section className="space-y-4 border-t border-canopy-100 pt-8 dark:border-canopy-700">
+        <h2 className="font-display text-lg font-semibold text-canopy-900 dark:text-paper">Donate Page</h2>
+        <Field label="UPI ID" value={donate.upi_id} onChange={upd(setDonate, "upi_id")} />
+        <Field label="Intro paragraph" value={donate.intro_text} onChange={upd(setDonate, "intro_text")} textarea rows={2} />
+        <button onClick={() => handleSave("donate_info", donate)} disabled={saving === "donate_info"}
+          className="inline-flex items-center gap-2 rounded-full bg-canopy-700 px-6 py-2.5 text-sm font-semibold text-paper hover:bg-moss-700 disabled:opacity-60">
+          <Save size={15} /> {saving === "donate_info" ? "Saving..." : "Save Donate Info"}
         </button>
       </section>
     </div>

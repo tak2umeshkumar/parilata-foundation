@@ -1,15 +1,16 @@
 import { QrCode, Copy } from "lucide-react";
+import { getSiteContent, DONATE_DEFAULTS } from "@/lib/site-content";
 
 export const metadata = { title: "Donate" };
 
-const upiId = process.env.NEXT_PUBLIC_UPI_ID || "parilatafoundation@upi";
+export default async function DonatePage() {
+  const content = await getSiteContent("donate_info", DONATE_DEFAULTS);
 
-export default function DonatePage() {
   return (
     <div className="container-wide max-w-2xl py-16 md:py-24 text-center">
       <h1 className="font-display text-4xl font-semibold text-canopy-900 dark:text-paper">Support Our Work</h1>
       <p className="mx-auto mt-3 max-w-md text-canopy-700/80 dark:text-canopy-100/70">
-        Every contribution funds saplings, water-testing kits, and the volunteers who show up on the ground.
+        {content.intro_text}
       </p>
 
       <div className="mx-auto mt-10 max-w-sm rounded-2xl border border-canopy-100 p-8 dark:border-canopy-700">
@@ -22,7 +23,7 @@ export default function DonatePage() {
         </p>
 
         <div className="mt-6 flex items-center justify-center gap-2 rounded-lg bg-canopy-50 px-4 py-3 dark:bg-canopy-800">
-          <span className="font-mono text-sm text-canopy-900 dark:text-paper">{upiId}</span>
+          <span className="font-mono text-sm text-canopy-900 dark:text-paper">{content.upi_id}</span>
           <Copy size={14} className="text-canopy-600" />
         </div>
       </div>

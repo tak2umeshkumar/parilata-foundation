@@ -63,6 +63,25 @@ export const MISSION_DEFAULTS: MissionContent = {
   quote_author: "— Kajal Kaser, Founder",
 };
 
+export type ContactInfo = {
+  email: string;
+  location: string;
+};
+
+export const CONTACT_DEFAULTS: ContactInfo = {
+  email: "hello@parilatafoundation.org",
+  location: "India",
+};
+
+export type DonateInfo = {
+  upi_id: string;
+  intro_text: string;
+};
+
+export const DONATE_DEFAULTS: DonateInfo = {
+  upi_id: "parilatafoundation@upi",
+  intro_text: "Every contribution funds saplings, water-testing kits, and the volunteers who show up on the ground.",
+};
 export type AboutContent = {
   intro_heading: string;
   intro_body: string;

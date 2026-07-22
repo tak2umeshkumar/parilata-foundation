@@ -5,11 +5,11 @@
 
 import { createClient } from "@/lib/supabase/server";
 import {
-  HERO_DEFAULTS, MISSION_DEFAULTS, ABOUT_DEFAULTS,
+  HERO_DEFAULTS, MISSION_DEFAULTS, ABOUT_DEFAULTS, CONTACT_DEFAULTS, DONATE_DEFAULTS,
 } from "@/lib/site-content-types";
 
-export { HERO_DEFAULTS, MISSION_DEFAULTS, ABOUT_DEFAULTS };
-export type { HeroContent, MissionContent, AboutContent } from "@/lib/site-content-types";
+export { HERO_DEFAULTS, MISSION_DEFAULTS, ABOUT_DEFAULTS, CONTACT_DEFAULTS, DONATE_DEFAULTS };
+export type { HeroContent, MissionContent, AboutContent, ContactInfo, DonateInfo } from "@/lib/site-content-types";
 
 export async function getSiteContent<T extends Record<string, unknown>>(
   id: string,

@@ -1,9 +1,11 @@
 import Link from "next/link";
 import { Leaf, Instagram, Facebook, Youtube, Mail, MessageCircle } from "lucide-react";
+import { getSiteContent, CONTACT_DEFAULTS } from "@/lib/site-content";
 
 const whatsapp = process.env.NEXT_PUBLIC_WHATSAPP_NUMBER || "91XXXXXXXXXX";
 
-export function Footer() {
+export async function Footer() {
+  const content = await getSiteContent("contact_info", CONTACT_DEFAULTS);
   return (
     <footer className="border-t border-canopy-100 bg-canopy-900 text-paper">
       <div className="container-wide grid gap-10 py-16 md:grid-cols-4">
@@ -47,7 +49,7 @@ export function Footer() {
               aria-label="WhatsApp" className="rounded-full bg-canopy-700 p-2.5 hover:bg-moss-700">
               <MessageCircle size={16} />
             </a>
-            <a href="mailto:hello@parilatafoundation.org" aria-label="Email"
+            <a href={`mailto:${content.email}`} aria-label="Email"
               className="rounded-full bg-canopy-700 p-2.5 hover:bg-moss-700">
               <Mail size={16} />
             </a>
