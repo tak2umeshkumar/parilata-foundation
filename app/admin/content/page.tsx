@@ -209,6 +209,7 @@ export default function AdminContentPage() {
         <h2 className="font-display text-lg font-semibold text-canopy-900 dark:text-paper">Donate Page</h2>
         <Field label="UPI ID" value={donate.upi_id} onChange={upd(setDonate, "upi_id")} />
         <Field label="Intro paragraph" value={donate.intro_text} onChange={upd(setDonate, "intro_text")} textarea rows={2} />
+        <ImageField label="UPI QR code image" value={donate.qr_image_url} onChange={upd(setDonate, "qr_image_url")} />
         <button onClick={() => handleSave("donate_info", donate)} disabled={saving === "donate_info"}
           className="inline-flex items-center gap-2 rounded-full bg-canopy-700 px-6 py-2.5 text-sm font-semibold text-paper hover:bg-moss-700 disabled:opacity-60">
           <Save size={15} /> {saving === "donate_info" ? "Saving..." : "Save Donate Info"}

@@ -76,11 +76,13 @@ export const CONTACT_DEFAULTS: ContactInfo = {
 export type DonateInfo = {
   upi_id: string;
   intro_text: string;
+  qr_image_url: string;
 };
 
 export const DONATE_DEFAULTS: DonateInfo = {
   upi_id: "parilatafoundation@upi",
   intro_text: "Every contribution funds saplings, water-testing kits, and the volunteers who show up on the ground.",
+  qr_image_url: "",
 };
 export type AboutContent = {
   intro_heading: string;

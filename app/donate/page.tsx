@@ -14,13 +14,23 @@ export default async function DonatePage() {
       </p>
 
       <div className="mx-auto mt-10 max-w-sm rounded-2xl border border-canopy-100 p-8 dark:border-canopy-700">
-        <div className="mx-auto grid h-48 w-48 place-items-center rounded-xl border-2 border-dashed border-canopy-300 text-canopy-400">
-          <QrCode size={64} />
-          <span className="sr-only">UPI QR code placeholder — replace with your real QR image</span>
-        </div>
-        <p className="mt-4 text-xs text-canopy-700/60 dark:text-canopy-100/60">
-          Placeholder — replace with your bank/UPI app's real QR code image.
-        </p>
+        {content.qr_image_url ? (
+          <img
+            src={content.qr_image_url}
+            alt="UPI QR code for donations"
+            className="mx-auto h-48 w-48 rounded-xl object-contain"
+          />
+        ) : (
+          <>
+            <div className="mx-auto grid h-48 w-48 place-items-center rounded-xl border-2 border-dashed border-canopy-300 text-canopy-400">
+              <QrCode size={64} />
+              <span className="sr-only">UPI QR code placeholder — upload your real QR code from the admin panel</span>
+            </div>
+            <p className="mt-4 text-xs text-canopy-700/60 dark:text-canopy-100/60">
+              Placeholder — upload your bank/UPI app's real QR code image from /admin/content.
+            </p>
+          </>
+        )}
 
         <div className="mt-6 flex items-center justify-center gap-2 rounded-lg bg-canopy-50 px-4 py-3 dark:bg-canopy-800">
           <span className="font-mono text-sm text-canopy-900 dark:text-paper">{content.upi_id}</span>
