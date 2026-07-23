@@ -383,3 +383,74 @@ create policy "Admins manage books" on public.books
   for all using (
     exists (select 1 from public.profiles p where p.id = auth.uid() and p.role in ('admin','editor'))
   );
+
+-- ============================================================
+-- LIKES (safe public increment via RPC, not direct table writes)
+-- ============================================================
+alter table public.blogs add column if not exists like_count integer not null default 0;
+alter table public.stories add column if not exists like_count integer not null default 0;
+
+create or replace function public.increment_blog_likes(post_id uuid)
+returns integer as $$
+declare
+  new_count integer;
+begin
+  update public.blogs set like_count = like_count + 1 where id = post_id
+  returning like_count into new_count;
+  return new_count;
+end;
+$$ language plpgsql security definer;
+
+create or replace function public.increment_story_likes(post_id uuid)
+returns integer as $$
+declare
+  new_count integer;
+begin
+  update public.stories set like_count = like_count + 1 where id = post_id
+  returning like_count into new_count;
+  return new_count;
+end;
+$$ language plpgsql security definer;
+
+grant execute on function public.increment_blog_likes(uuid) to anon, authenticated;
+grant execute on function public.increment_story_likes(uuid) to anon, authenticated;
+
+-- ============================================================
+-- MISSING PIECE: admins need to moderate comments (approve/delete),
+-- but no policy allowed that yet — only public insert + read-approved existed.
+-- ============================================================
+create policy "Admins manage comments" on public.comments
+  for all using (
+    exists (select 1 from public.profiles p where p.id = auth.uid() and p.role in ('admin','editor'))
+  );
+
+-- ============================================================
+-- LIKES (atomic increment via security-definer functions —
+-- NOT a public UPDATE policy, which would let anyone rewrite
+-- post content directly through the client)
+-- ============================================================
+alter table public.blogs add column if not exists likes_count integer not null default 0;
+alter table public.stories add column if not exists likes_count integer not null default 0;
+
+create or replace function public.increment_blog_likes(blog_id uuid)
+returns integer as $$
+declare new_count integer;
+begin
+  update public.blogs set likes_count = likes_count + 1 where id = blog_id
+  returning likes_count into new_count;
+  return new_count;
+end;
+$$ language plpgsql security definer;
+
+create or replace function public.increment_story_likes(story_id uuid)
+returns integer as $$
+declare new_count integer;
+begin
+  update public.stories set likes_count = likes_count + 1 where id = story_id
+  returning likes_count into new_count;
+  return new_count;
+end;
+$$ language plpgsql security definer;
+
+grant execute on function public.increment_blog_likes(uuid) to anon, authenticated;
+grant execute on function public.increment_story_likes(uuid) to anon, authenticated;

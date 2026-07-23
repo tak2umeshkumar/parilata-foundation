@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { LayoutDashboard, FileText, Image as ImageIcon, Video, Users, Mail, Leaf, PenSquare, BookOpen } from "lucide-react";
+import { LayoutDashboard, FileText, Image as ImageIcon, Video, Users, Mail, Leaf, PenSquare, BookOpen, MessageSquare } from "lucide-react";
 import { LogoutButton } from "@/components/admin/logout-button";
 import { MobileAdminNav } from "@/components/admin/mobile-admin-nav";
 
@@ -11,6 +11,7 @@ export default function AdminLayout({ children }: { children: React.ReactNode })
     { href: "/admin/books", label: "Books", icon: BookOpen },
     { href: "/admin/gallery", label: "Gallery", icon: ImageIcon },
     { href: "/admin/videos", label: "Videos", icon: Video },
+    { href: "/admin/comments", label: "Comments", icon: MessageSquare },
     { href: "/admin/volunteers", label: "Volunteers", icon: Users },
     { href: "/admin/messages", label: "Messages", icon: Mail },
   ];

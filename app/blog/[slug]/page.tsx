@@ -2,6 +2,11 @@ import { createClient } from "@/lib/supabase/server";
 import { notFound } from "next/navigation";
 import Image from "next/image";
 import type { Metadata } from "next";
+import { ShareButtons } from "@/components/shared/share-buttons";
+import { LikeButton } from "@/components/shared/like-button";
+import { CommentSection } from "@/components/shared/comment-section";
+
+const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || "https://parilatafoundation.org";
 
 export async function generateMetadata({ params }: { params: Promise<{ slug: string }> }): Promise<Metadata> {
   const { slug } = await params;
@@ -21,6 +26,15 @@ export default async function BlogPostPage({ params }: { params: Promise<{ slug:
 
   if (!blog) notFound();
 
+  const { data: comments } = await supabase
+    .from("comments")
+    .select("id, guest_name, content, created_at")
+    .eq("blog_id", blog.id)
+    .eq("is_approved", true)
+    .order("created_at", { ascending: true });
+
+  const postUrl = `${siteUrl}/blog/${blog.slug}`;
+
   return (
     <article className="container-wide max-w-3xl py-16 md:py-24">
       <h1 className="font-display text-4xl font-semibold text-canopy-900 dark:text-paper">{blog.title}</h1>
@@ -38,6 +52,13 @@ export default async function BlogPostPage({ params }: { params: Promise<{ slug:
         className="prose prose-canopy mt-8 max-w-none text-canopy-800 dark:text-canopy-100"
         dangerouslySetInnerHTML={{ __html: blog.content }}
       />
+
+      <div className="mt-10 flex flex-wrap items-center justify-between gap-4 border-t border-canopy-100 pt-6 dark:border-canopy-700">
+        <LikeButton kind="blog" id={blog.id} initialCount={blog.likes_count ?? 0} />
+        <ShareButtons title={blog.title} url={postUrl} />
+      </div>
+
+      <CommentSection kind="blog" id={blog.id} initialComments={comments ?? []} />
     </article>
   );
 }
