@@ -19,7 +19,7 @@ const manrope = Manrope({
   weight: ["400", "500", "600", "700", "800"],
 });
 
-const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || "https://parilatafoundation.org";
+const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || "https://parilata-foundation.vercel.app";
 
 export const metadata: Metadata = {
   metadataBase: new URL(siteUrl),

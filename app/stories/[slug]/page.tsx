@@ -5,7 +5,7 @@ import { ShareButtons } from "@/components/shared/share-buttons";
 import { LikeButton } from "@/components/shared/like-button";
 import { CommentSection } from "@/components/shared/comment-section";
 
-const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || "https://parilatafoundation.org";
+const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || "https://parilata-foundation.vercel.app";
 
 export default async function StoryPage({ params }: { params: Promise<{ slug: string }> }) {
   const { slug } = await params;

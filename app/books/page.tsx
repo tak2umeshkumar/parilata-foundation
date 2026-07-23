@@ -5,7 +5,7 @@ import { ShareButtons } from "@/components/shared/share-buttons";
 
 export const metadata = { title: "Books" };
 
-const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || "https://parilatafoundation.org";
+const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || "https://parilata-foundation.vercel.app";
 
 export default async function BooksPage() {
   const supabase = await createClient();
