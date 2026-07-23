@@ -310,3 +310,76 @@ create policy "Admins manage site content" on public.site_content
   for all using (
     exists (select 1 from public.profiles p where p.id = auth.uid() and p.role in ('admin','editor'))
   );
+
+-- ============================================================
+-- BOOKS (Kajal Kaser's published books — advertised with buy links)
+-- ============================================================
+create table public.books (
+  id uuid primary key default uuid_generate_v4(),
+  title text not null,
+  description text,
+  cover_image text,
+  buy_link text not null,
+  price text,
+  display_order integer not null default 0,
+  created_at timestamptz not null default now()
+);
+
+alter table public.books enable row level security;
+
+create policy "Public read books" on public.books
+  for select using (true);
+
+create policy "Admins manage books" on public.books
+  for all using (
+    exists (select 1 from public.profiles p where p.id = auth.uid() and p.role in ('admin','editor'))
+  );
+
+-- ============================================================
+-- BOOKS (authored by the founder, with buy links)
+-- ============================================================
+create table public.books (
+  id uuid primary key default uuid_generate_v4(),
+  title text not null,
+  slug text not null unique,
+  description text not null,
+  cover_image text,
+  buy_link text,
+  price text,
+  published_year text,
+  created_at timestamptz not null default now()
+);
+
+alter table public.books enable row level security;
+
+create policy "Public read books" on public.books
+  for select using (true);
+
+create policy "Admins manage books" on public.books
+  for all using (
+    exists (select 1 from public.profiles p where p.id = auth.uid() and p.role in ('admin','editor'))
+  );
+
+-- ============================================================
+-- BOOKS (by the founder — showcased with buy links + share buttons)
+-- ============================================================
+create table public.books (
+  id uuid primary key default uuid_generate_v4(),
+  title text not null,
+  description text,
+  cover_image_url text,
+  buy_link text,
+  published_year text,
+  display_order integer not null default 0,
+  created_at timestamptz not null default now()
+);
+
+alter table public.books enable row level security;
+
+create policy "Public read books" on public.books
+  for select using (true);
+
+create policy "Admins manage books" on public.books
+  for all using (
+    exists (select 1 from public.profiles p where p.id = auth.uid() and p.role in ('admin','editor'))
+  );

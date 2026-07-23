@@ -28,6 +28,7 @@ export async function Footer() {
             <li><Link href="/about" className="hover:text-paper">About</Link></li>
             <li><Link href="/blog" className="hover:text-paper">Blog</Link></li>
             <li><Link href="/stories" className="hover:text-paper">Stories</Link></li>
+            <li><Link href="/books" className="hover:text-paper">Books</Link></li>
             <li><Link href="/gallery" className="hover:text-paper">Gallery</Link></li>
             <li><Link href="/videos" className="hover:text-paper">Videos</Link></li>
           </ul>

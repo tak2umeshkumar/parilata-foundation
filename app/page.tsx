@@ -1,5 +1,6 @@
 import { Hero } from "@/components/sections/hero";
 import { Mission } from "@/components/sections/mission";
+import { FeaturedBooks } from "@/components/sections/featured-books";
 import { FeaturedContent } from "@/components/sections/featured-content";
 import { GalleryPreview, Testimonials, VolunteerDonateCTA } from "@/components/sections/gallery-testimonials-cta";
 import { getSiteContent, HERO_DEFAULTS, MISSION_DEFAULTS } from "@/lib/site-content";
@@ -14,6 +15,7 @@ export default async function HomePage() {
     <>
       <Hero content={heroContent} />
       <Mission content={missionContent} />
+      <FeaturedBooks />
       <FeaturedContent
         heading="Featured Blogs"
         subheading="From the Blog"
