@@ -27,7 +27,7 @@ export async function FeaturedBooks() {
             <Link key={book.id} href="/books" className="group flex items-center gap-5 rounded-2xl border border-canopy-100 bg-white/70 p-5 transition hover:shadow-md dark:border-canopy-700 dark:bg-canopy-800/50">
               <div className="relative aspect-[3/4] w-20 shrink-0 overflow-hidden rounded-lg bg-canopy-100">
                 {book.cover_image_url ? (
-                  <Image src={book.cover_image_url} alt={book.title} fill className="object-cover" />
+                  <Image src={book.cover_image_url} alt={book.title} fill className="object-contain" />
                 ) : (
                   <div className="grid h-full w-full place-items-center text-canopy-300"><BookOpen size={24} /></div>
                 )}

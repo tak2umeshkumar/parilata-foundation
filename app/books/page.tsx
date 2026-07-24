@@ -24,7 +24,7 @@ export default async function BooksPage() {
           <div key={book.id} className="flex flex-col overflow-hidden rounded-2xl border border-canopy-100 bg-white/60 dark:border-canopy-700 dark:bg-canopy-800/40 sm:flex-row">
             <div className="relative aspect-[3/4] w-full shrink-0 bg-canopy-100 sm:w-48">
               {book.cover_image_url ? (
-                <Image src={book.cover_image_url} alt={book.title} fill className="object-cover" />
+                <Image src={book.cover_image_url} alt={book.title} fill className="object-contain" />
               ) : (
                 <div className="grid h-full w-full place-items-center text-canopy-300">
                   <BookOpen size={40} />

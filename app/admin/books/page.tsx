@@ -121,7 +121,7 @@ export default function AdminBooksPage() {
         </div>
 
         <div>
-          {form.cover_image_url && <img src={form.cover_image_url} alt="" className="mb-3 h-40 w-32 rounded-lg object-cover" />}
+          {form.cover_image_url && <img src={form.cover_image_url} alt="" className="mb-3 h-40 w-32 rounded-lg bg-canopy-50 object-contain dark:bg-canopy-900" />}
           <label className="flex w-fit cursor-pointer items-center gap-2 rounded-lg border border-dashed border-canopy-300 px-4 py-3 text-sm text-canopy-700 hover:bg-canopy-50 dark:border-canopy-600 dark:text-paper dark:hover:bg-canopy-800">
             {uploading ? <Loader2 size={16} className="animate-spin" /> : <UploadCloud size={16} />}
             {uploading ? "Uploading..." : "Upload cover image"}
@@ -139,7 +139,7 @@ export default function AdminBooksPage() {
         {books.map((book) => (
           <div key={book.id} className="flex items-center gap-4 rounded-lg border border-canopy-100 p-4 dark:border-canopy-700">
             {book.cover_image_url ? (
-              <img src={book.cover_image_url} alt="" className="h-16 w-12 shrink-0 rounded object-cover" />
+              <img src={book.cover_image_url} alt="" className="h-16 w-12 shrink-0 rounded bg-canopy-50 object-contain dark:bg-canopy-900" />
             ) : (
               <div className="h-16 w-12 shrink-0 rounded bg-canopy-100" />
             )}
